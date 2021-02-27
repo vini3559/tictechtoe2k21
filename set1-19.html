@@ -1,0 +1,233 @@
+<html>
+        <head>
+            <style>
+                body {
+                background-image:    url("code.jpg");
+                background-size:     cover;                      /* <------ */
+                background-repeat:   no-repeat;
+                background-position: center center;              /* optional, center the image */
+            }
+                .xno{
+                    padding: 20px;
+                    border: 10px 0ch black;
+                    font-size: 60px;
+                    background-color: antiquewhite;
+                }
+                #demo,#result{
+                    font-size: 60px;
+                    font-family: cursive;
+					color:white;
+                }
+                #mytablex{
+                    border: 5px solid sienna;
+					margin-left:610px;
+				}
+                #rules{
+                  float: left;
+                  font-size: 20px;
+                  border:thick solid royalblue;
+
+                }
+                #score{
+                    float: right;
+                    font-size: 36px;
+					color:white;
+                }
+                </style>
+
+            <script>
+               qna=["<p style='color:white;'><b>1.SEQUENCE</b><br/>Find the next number in<br/>the sequence 3,6,9,30,117,.....<br/>a)192 <br/>b)351 <br/>c)288<br/>d)588</p>",
+               "<p style='color:white;'><b>2.PROBABILITY</b><br/>Kids and Toys factory<br/>is transporting balls of<br/>five different colors yellow,<br/>blue,red,green,white.<br/>Mr.Ravi a worker in the<br/>factory has to seperate<br/>these balls as per their<br/>colors into different boxes<br/>and label them with the<br/>correspnding coloured labels.<br/>Mr.Ravi after seperating the box,<br/>sealed the boxes and then<br/>labelled the boxes at random.<br/>What is the probability<br/>that all the boxes are<br/>incorrectly     labelled?<br/><br/>a)1<br/>b)0<br/>c)11/120<br/>d)11/30</p>",
+               "<p style='color:white;'><b>3.CLOCK</b></br>A clock is set right at 8 a.m.<br/>The clock gains 10 minutes in<br/>24 hours will be the true time<br/>when the clock indicates 1 p.m. on the<br/>following day?</br>a)48 min. past 12.</br>b)46 min. past 12</br>c)45 min. past 12</br>d)47 min. past 12</p>",
+               "<p style='color:white;'><b>4.ARITHMETIC REASONING</b><br>How many numbers are there<br/>between 1 and 100 that are not<br/>divisible by 2, 3 and 5? </br>a)16</br>b)21</br>c)26</br>d)31</p>",
+               "<p style='color:white;'><b>5.QUANTITATIVE APTITUDE</b><br/>What was the day on<br/>August 15,1947<br/>(Assume first day is Monday)<br/>a)Friday<br/>b)Saturday<br/>c)Sunday<br/>d)Thursday</p>",
+               "<p style='color:white;'><b>6.ALPHABET SERIES</b><br/>Identify the next term of the<br/>series given below.<br/>ADG, CGJ, EHK, GJM,?<br/>a)IMN<br/>b)JLN<br/>c)INP<br/>d)ILO</p>",
+               "<p style='color:white;'><b>7.TECHNICAL</b></br>What is the </br>ASCII value of character 'S'?</br>a)83</br>b)79</br>c)85</br>d)94</p>",
+               "<p style='color:white;'><b>8.PUZZLE</b><br/>At a party, everyone shook hands<br/>with everybody else. There were<br/>66 handshakes. How many people were at<br/>the party?<br/>a)30<br/>b)14<br/>c)12<br/>d)25</p>",
+			   "<p style='color:white;'><b>9.ANALYTICAL REASONING</b><br/>How many triangles are there<br/>in the given figure.<br/><img src='triangle.jpeg' height=200 width=200/><br/>a)28<br/>b)32<br/>c)36<br/>d)40</p>"
+				];
+               ans=["d","d","a","c","a","d","a","c","c"];
+                var qid,ques,opt,ip1;
+                var boxi=document.getElementsByClassName("xno");
+                var corr=0;
+                //const prompt = require('electron-prompt');
+              //const smalltalk=require('smalltalk');
+
+
+                var countDownDate = new Date();
+                var t2=new Date(countDownDate);
+                t2.setMinutes(countDownDate.getMinutes()+20);
+                countDownDate=t2;
+                var en=true;
+                var x = setInterval(function() {
+                    // Get todays date and time
+                    var now = new Date().getTime();
+
+                    // Find the distance between now an the count down date
+                    var distance = countDownDate - now;
+
+                    // Time calculations for days, hours, minutes and seconds
+                    //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Display the result in the element with id="demo"
+                    document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+
+                    // If the count down is finished, write some text
+                    if (distance < 0) {
+                        clearInterval(x);
+                        document.getElementById("demo").innerHTML = "EXPIRED";
+                        en=false;
+
+                            }
+                            }, 1000);
+                var k=0,c=0;
+                function toggle(elem){
+                                if(en==true){
+                                    if(document.getElementById(elem.id).innerHTML=="+"){
+                                    setquestion(elem.id);
+
+                              
+                                }
+                                else{
+                                    ip1.disabled=true;
+                                document.getElementById("btn1").disabled=true;
+                                }
+                            }
+                        }
+                            function check(){
+                              let countcheck=0;
+                                    if(boxi[0].innerHTML=="o"&&boxi[1].innerHTML=="o"&&boxi[2].innerHTML=="o")
+                                        countcheck++;
+                                    if(boxi[3].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[5].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[6].innerHTML=="o"&&boxi[7].innerHTML=="o"&&boxi[8].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[0].innerHTML=="o"&&boxi[3].innerHTML=="o"&&boxi[6].innerHTML=="o")
+                                        countcheck++;
+                                    if(boxi[1].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[7].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[2].innerHTML=="o"&&boxi[5].innerHTML=="o"&&boxi[8].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[0].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[8].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[2].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[6].innerHTML=="o")
+                                            countcheck++;
+                                    document.getElementById("score").innerHTML="<b><p>Correct Answer-:"+corr+"</p><p>Number of Lines Completed-:" + countcheck+"</p></b>"
+                                    if(countcheck==2)
+                                        endgame();
+
+
+
+                            }
+                            function endgame(){
+                                en=false;
+                                document.getElementById("result").innerHTML="You won!! Time left"+document.getElementById("demo").innerHTML;
+                                document.getElementById("demo").style.visibility="hidden";
+
+                            }
+                            function setquestion(idk){
+                                ques=document.getElementById("q1");
+                                opt=document.getElementById("options");
+                                ip1=document.getElementById("ip1");
+               
+                                qid=idk-1;
+                                console.log(qna[qid]);
+                                ques.innerHTML=qna[qid];
+                                ip1.disabled=false;
+                                document.getElementById("btn1").disabled=false;
+                                
+
+                            }
+                            function eval(){
+                                k=ip1.value;
+                                console.log(k);
+                                if(k!=null){
+                                    c++;
+                                  if(k.toLowerCase()==ans[qid]){
+                                    document.getElementById(qid+1).innerHTML="o";
+                                    corr++;
+                                  }
+                                else
+                                    document.getElementById(qid+1).innerHTML="x";
+                                    ip1.value='';
+                                    ip1.disabled=true;
+                                document.getElementById("btn1").disabled=true;
+
+                                    
+                                }
+                               check();
+                                if(c==9){
+                                    en=false;
+                                    }
+                                }
+								function runScript(e) {
+    //See notes about 'which' and 'key'
+    if (e.keyCode == 13) {
+        var tb = document.getElementById("ip1");
+        eval(tb.value);
+        return false;
+    }
+}
+
+                            
+
+
+
+
+
+            </script>
+        </head>
+        <body>
+
+                <center>
+                    <p id="demo"></p>
+                    <p id="result"></p>
+
+                <table id="mytablex" style="position:absolute;">
+                        <tr>
+                          <th><button id="1" class="xno" onclick="toggle(this)" >+</button></th>
+                          <th><button id="2" class="xno" onclick="toggle(this)" >+</button></th>
+                          <th><button id="3" class="xno" onclick="toggle(this)" >+</button></th>
+                        </tr>
+                        <div id="score">
+                                <b><p style="color:white;">Correct Answer-:0</p>
+                                <p style="color:white;">Number of Lines Completed-:0</p></b>
+                              </div>
+                              <div id="Rules">
+                                   <p id="q1"></p>
+                                   <p id="options"></p>
+                                   <form>
+                                   <input type="text" id="ip1" autocomplete="off" onkeypress="return runScript(event)"/>
+                                   </form>
+                                   <button id="btn1" onclick="eval()" disabled>submit</button>
+						<!--	<script>	   window.addEventListner('keypress',function(e){
+										if(e.keyCode===13){
+											e.preventDefault();
+											document.getElementById("btnl").click();
+											
+										}
+										},false);</script>-->
+								   
+                                  </div>
+
+
+                        <tr>
+                          <td><button id="4" class="xno" onclick="toggle(this)" >+</button></td>
+                          <td><button id="5" class="xno" onclick="toggle(this)">+</button></td>
+                          <td><button id="6" class="xno" onclick="toggle(this)">+</button></td>
+                        </tr>
+                        <tr>
+                          <td><button id="7" class="xno" onclick="toggle(this)">+</button></td>
+                          <td><button id="8" class="xno" onclick="toggle(this)">+</button></td>
+                          <td><button id="9" class="xno" onclick="toggle(this)">+</button></td>
+                        </tr>
+                </table>
+                    </center>
+
+
+
+        </body>
+    </html>

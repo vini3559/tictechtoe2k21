@@ -1,0 +1,227 @@
+<html>
+    <head>
+        <style>
+            body {
+            background-image:    url("code.jpg");
+            background-size:     cover;                      /* <------ */
+            background-repeat:   no-repeat;
+            background-position: center center;              /* optional, center the image */
+        }
+            .xno{
+                padding: 20px;
+                border: 10px 0ch black;
+                font-size: 60px;
+                background-color: antiquewhite;
+            }
+            #demo,#result{
+                font-size: 60px;
+                font-family: cursive;
+				color:white;
+            }
+            #mytablex{
+                border: 5px solid sienna;
+				margin-left:605px;
+
+            }
+            #rules{
+              float: left;
+              font-size: 20px;
+              border:thick solid royalblue;
+
+            }
+            #score{
+                float: right;
+                font-size: 36px;
+				color:white;
+            }
+            </style>
+
+        <script>
+          qna=["<p style='color:white'><b>1.QUANTITATIVE APTITUDE</b></br>The last day of a century cannot be</br>a)Monday<br/>b)Tuesday<br/>c)Wednesday<br/>d)Friday</p>",
+		  "<p style='color:white'><b>2.TECHNICAL</b><br/>What is the full form of URL?<br/>a)Uniform Resource Locator<br/>b)Uniform Resource Link<br/>c)Uniform Registered Link<br/>d)Unified Resource Link</p>",
+		  "<p style='color:white'><b>3.PROBABILITY</b><br/>A problem is given to three students<br/>whose chances of solving it are 1/2,1/3<br/>and 1/4 respectively. What is the<br/>probability that the problem will be solved?<br/>a)1/4<br/>b)1/2<br/>c)3/4<br/>d)7/12</p>",
+          "<p style='color:white'><b>4.PUZZLE</b></br>2+3=8,</br>3+7=27,</br>4+5=32,</br>5+8=60,</br>6+7=72,</br>7+8=??</br></p>",
+          "<p style='color:white'><b>5.SEQUENCE</b><br/>Find the missing number<br/>in the sequence <br/>4 6 34 160 ? 1234 <br/>a)504 <br/>b)480 <br/>c)360<br/>d)562<br/></p>",
+          "<p style='color:white'><b>6.PROFIT AND LOSS</b><br/>A Milkman purchases the milk at<br/>Rs x per litre and sells it at<br/>Rs 2x per litre still he mixes 2 litres <br/>water with every 6 litres of pure milk.<br/>What is profit percentage?<br/>a)100%<br/>b)133.33%<br/>c)150%<br/>d)166.66%</p>",
+          "<p style='color:white'><b>7.VENN DIAGRAM</b><br/>A school has 63 students studying Physics,<br/>Chemistry and Biology. 33 study Physics,<br/>25 Chemistry and 26 Biology. 10 study</br>Physics and Chemistry, 9 study Biology<br/>and Chemistry while 8 study both Physics<br/>and Biology. Equal numbers study all three<br/>subjects as those who learn none of the<br/>three. How many study only one of<br/>the three subjects?<br/>a)21<br/>b)30<br/>c)39<br/>d)42</p>",
+          "<p style='color:white'><b>8.NON VERBAL REASONING</b></br>Select a figure from amongst the<br/>Answer Figures which will continue<br/>the same series as established by<br/>the five Problem Figures.</br><img src='probfig.PNG'/><br/><img src='ansfig.PNG'/><br/>a)1</br>b)2</br>c)3</br>d)4</br>e)5</p>",
+          "<p style='color:white'><b>9.RIDDLE</b><br/>An apple is 40 cents, a banana is 60 cents and <br> a grapefruit is 80 cents. How much is a pear?<br/>a)20 cents<br/>b)40 cents<br/>c)60 cents<br/>d)80 cents<br/>"
+          ];
+          ans=["b","a","c","98","a","d","c","a","b"];
+            var qid,ques,opt,ip1;
+            var boxi=document.getElementsByClassName("xno");
+            var corr=0;
+            //const prompt = require('electron-prompt');
+          //const smalltalk=require('smalltalk');
+
+
+            var countDownDate = new Date();
+            var t2=new Date(countDownDate);
+            t2.setMinutes(countDownDate.getMinutes()+20);
+            countDownDate=t2;
+            var en=true;
+            var x = setInterval(function() {
+                // Get todays date and time
+                var now = new Date().getTime();
+
+                // Find the distance between now an the count down date
+                var distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result in the element with id="demo"
+                document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "EXPIRED";
+                    en=false;
+
+                        }
+                        }, 1000);
+            var k=0,c=0;
+            function toggle(elem){
+                            if(en==true){
+                                if(document.getElementById(elem.id).innerHTML=="+"){
+                                setquestion(elem.id);
+
+                          
+                            }
+                            else{
+                                ip1.disabled=true;
+                            document.getElementById("btn1").disabled=true;
+                            }
+                        }
+                    }
+                        function check(){
+                          let countcheck=0;
+                                if(boxi[0].innerHTML=="o"&&boxi[1].innerHTML=="o"&&boxi[2].innerHTML=="o")
+                                    countcheck++;
+                                if(boxi[3].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[5].innerHTML=="o")
+                                        countcheck++;
+                                if(boxi[6].innerHTML=="o"&&boxi[7].innerHTML=="o"&&boxi[8].innerHTML=="o")
+                                        countcheck++;
+                                if(boxi[0].innerHTML=="o"&&boxi[3].innerHTML=="o"&&boxi[6].innerHTML=="o")
+                                    countcheck++;
+                                if(boxi[1].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[7].innerHTML=="o")
+                                        countcheck++;
+                                if(boxi[2].innerHTML=="o"&&boxi[5].innerHTML=="o"&&boxi[8].innerHTML=="o")
+                                        countcheck++;
+                                if(boxi[0].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[8].innerHTML=="o")
+                                        countcheck++;
+                                if(boxi[2].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[6].innerHTML=="o")
+                                        countcheck++;
+                                document.getElementById("score").innerHTML="<b><pstyle='color:white'>Correct Answer-:"+corr+"</p><p>Number of Lines Completed-:" + countcheck+"</p></b>"
+                                if(countcheck==2)
+                                    endgame();
+
+
+
+                        }
+                        function endgame(){
+                            en=false;
+                            document.getElementById("result").innerHTML="You won!! Time left"+document.getElementById("demo").innerHTML;
+                            document.getElementById("demo").style.visibility="hidden";
+
+                        }
+                        function setquestion(idk){
+                            ques=document.getElementById("q1");
+                            opt=document.getElementById("options");
+                            ip1=document.getElementById("ip1");
+           
+                            qid=idk-1;
+                            console.log(qna[qid]);
+                            ques.innerHTML=qna[qid];
+                            ip1.disabled=false;
+                            document.getElementById("btn1").disabled=false;
+                            
+
+                        }
+                        function eval(){
+                            k=ip1.value;
+                            console.log(k);
+                            if(k!=null){
+                                c++;
+                              if(k.toLowerCase()==ans[qid]){
+                                document.getElementById(qid+1).innerHTML="o";
+                                corr++;
+                              }
+                            else
+                                document.getElementById(qid+1).innerHTML="x";
+                                ip1.value='';
+                                ip1.disabled=true;
+                            document.getElementById("btn1").disabled=true;
+
+                                
+                            }
+                           check();
+                            if(c==9){
+                                en=false;
+                                }
+                            }
+							function runScript(e) {
+    //See notes about 'which' and 'key'
+    if (e.keyCode == 13) {
+        var tb = document.getElementById("ip1");
+        eval(tb.value);
+        return false;
+    }
+}
+
+
+                        
+
+
+
+
+
+        </script>
+    </head>
+    <body>
+
+            <center>
+                <p id="demo"></p>
+                <p id="result"></p>
+
+            <table id="mytablex" style="position:absolute;">
+                    <tr>
+                      <th><button id="1" class="xno" onclick="toggle(this)" >+</button></th>
+                      <th><button id="2" class="xno" onclick="toggle(this)" >+</button></th>
+                      <th><button id="3" class="xno" onclick="toggle(this)" >+</button></th>
+                    </tr>
+                    <div id="score">
+                            <b><p>Correct Answer-:0</p>
+                            <p>Number of Lines Completed-:0</p></b>
+                          </div>
+                          <div id="Rules">
+                               <p id="q1"></p>
+                               <p id="options"></p>
+                               <form>
+                               <input type="text" id="ip1" autocomplete="off" onkeypress="return runScript(event)"/>
+                               </form>
+                               <button id="btn1" onclick="eval()" disabled>submit</button>
+                              </div>
+
+
+                    <tr>
+                      <td><button id="4" class="xno" onclick="toggle(this)" >+</button></td>
+                      <td><button id="5" class="xno" onclick="toggle(this)">+</button></td>
+                      <td><button id="6" class="xno" onclick="toggle(this)">+</button></td>
+                    </tr>
+                    <tr>
+                      <td><button id="7" class="xno" onclick="toggle(this)">+</button></td>
+                      <td><button id="8" class="xno" onclick="toggle(this)">+</button></td>
+                      <td><button id="9" class="xno" onclick="toggle(this)">+</button></td>
+                    </tr>
+            </table>
+                </center>
+
+
+
+    </body>
+</html>

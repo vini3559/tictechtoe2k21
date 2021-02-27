@@ -1,0 +1,228 @@
+
+<!-- saved from url=(0060)file:///C:/Users/G%20Namya%20Reddy/Downloads/set1%20(1).html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+            <style>
+                body {
+                background-image:    url("code.jpg");
+                background-size:     cover;                      /* <------ */
+                background-repeat:   no-repeat;
+                background-position: center center;              /* optional, center the image */
+            }
+                .xno{
+                    padding: 20px;
+                    border: 10px 0ch black;
+                    font-size: 60px;
+                    background-color: antiquewhite;
+                }
+                #demo,#result{
+                    font-size: 60px;
+                    font-family: cursive;
+					color:white;
+                }
+                #mytablex{
+                    border: 5px solid sienna;
+					margin-left:605px;
+
+                }
+                #rules{
+                  float: left;
+                  font-size: 20px;
+                  border:thick solid royalblue;
+
+                }
+                #score{
+                    float: right;
+                    font-size: 36px;
+					color:white;
+                }
+                </style>
+
+            <script>
+               qna=["<p style='color:white'><b>1.PROBABILITY</b><br/> In a box, there are 8 red,<br/> 7 blue and 6 green balls. <br/>One ball is picked up randomly.<br/> What is the probability that it is<br/> neither red nor green?  <br/><br/>a)2/3 <br/>b)8/21<br/>c)9/21<br/>d)3/4</p>",
+               "<p style='color:white'><b>2.QUANTITATIVE APTITUDE</b><br/>Four persons can cross a bridge in 3,7,13,17 minutes.<br/>Only two can cross at time.<br/> Find the min time taken <br/>to cross the bridge<br/><br/>a)17<br/>b)20<br/>c)10<br/>d)34</p>",
+               "<p style='color:white'><b>3.ARITHMETIC REASONING</b></br>The sum of two numbers is 528 <br/>and their H.C.F is 33. <br/>The number of pairs of numbers<br/> satisfying the above condition is<br/><br/>a)4</br>b)6 </br>c)8</br>d)12</p>",
+               "<p style='color:white'><b>4.LOGICAL</b></br>Complete this series of numbers: <br/>9 = 4, 21 = 9, 22 = 9, 24 = 10, 8 = 5,<br/> 7 = 5, 99 = 10, 100 = 7, 16 =?<br/></br>a)12</br>b)11</br>c)7</br>d)8</p>",
+               "<p style='color:white'><b>5.SEQUENCE</b><br/>Find the next number in<br/>the sequence  5,12,23,50,141,...<br/>a)415<br/>b)430<br/>c)439<br/>d)488</p>",
+               "<p style='color:white'><b>6.ALPHABET SERIES</b><br/>Which letter is seventh from left <br/>of 16th from right in English alphabet?<br/><br/>a)D<br/>b)W<br/>c)R<br/>d)E</p>",
+               "<p style='color:white'><b>7.TECHNICAL</b></br>Full Form of SMS</br></br>a)System Modulation Server</br>b)Server Modulation System</br>c)System Management Server</br>d)Server Management System</p>",
+               "<p style='color:white'><b>8.VENN DIAGRAM</b><br/>How many numbers are there between <br/>1 and 100 that are not divisible by 2, 3 and 5?<br/><br/><br/>a)26<br/>b)36<br/>c)40<br/>d)68</p>",
+			   "<p style='color:white'><b>9.RIDDLE</b><br/>There are 100 people standing in a circle,<br/> the first person has a gun he starts<br/> shooting the person next to him and<br/> hands over the gun to the 3rd person and so on.<br/> Who will be the last person surviving?<br/><br/>a)54<br/>b)49<br/>c)73<br/>d)69</p>"
+              
+               ];
+               ans=["b","b","a","c","d","a","c","a","c"];
+                var qid,ques,opt,ip1;
+                var boxi=document.getElementsByClassName("xno");
+                var corr=0;
+                //const prompt = require('electron-prompt');
+              //const smalltalk=require('smalltalk');
+
+
+                var countDownDate = new Date();
+                var t2=new Date(countDownDate);
+                t2.setMinutes(countDownDate.getMinutes()+20);
+                countDownDate=t2;
+                var en=true;
+                var x = setInterval(function() {
+                    // Get todays date and time
+                    var now = new Date().getTime();
+
+                    // Find the distance between now an the count down date
+                    var distance = countDownDate - now;
+
+                    // Time calculations for days, hours, minutes and seconds
+                    //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Display the result in the element with id="demo"
+                    document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+
+                    // If the count down is finished, write some text
+                    if (distance < 0) {
+                        clearInterval(x);
+                        document.getElementById("demo").innerHTML = "EXPIRED";
+                        en=false;
+
+                            }
+                            }, 1000);
+                var k=0,c=0;
+                function toggle(elem){
+                                if(en==true){
+                                    if(document.getElementById(elem.id).innerHTML=="+"){
+                                    setquestion(elem.id);
+
+                              
+                                }
+                                else{
+                                    ip1.disabled=true;
+                                document.getElementById("btn1").disabled=true;
+                                }
+                            }
+                        }
+                            function check(){
+                              let countcheck=0;
+                                    if(boxi[0].innerHTML=="o"&&boxi[1].innerHTML=="o"&&boxi[2].innerHTML=="o")
+                                        countcheck++;
+                                    if(boxi[3].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[5].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[6].innerHTML=="o"&&boxi[7].innerHTML=="o"&&boxi[8].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[0].innerHTML=="o"&&boxi[3].innerHTML=="o"&&boxi[6].innerHTML=="o")
+                                        countcheck++;
+                                    if(boxi[1].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[7].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[2].innerHTML=="o"&&boxi[5].innerHTML=="o"&&boxi[8].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[0].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[8].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[2].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[6].innerHTML=="o")
+                                            countcheck++;
+                                    document.getElementById("score").innerHTML="<b><pstyle='color:white'>Correct Answer-:"+corr+"</p><p>Number of Lines Completed-:" + countcheck+"</p></b>"
+                                    if(countcheck==2)
+                                        endgame();
+
+
+
+                            }
+                            function endgame(){
+                                en=false;
+                                document.getElementById("result").innerHTML="You won!! Time left"+document.getElementById("demo").innerHTML;
+                                document.getElementById("demo").style.visibility="hidden";
+
+                            }
+                            function setquestion(idk){
+                                ques=document.getElementById("q1");
+                                opt=document.getElementById("options");
+                                ip1=document.getElementById("ip1");
+               
+                                qid=idk-1;
+                                console.log(qna[qid]);
+                                ques.innerHTML=qna[qid];
+                                ip1.disabled=false;
+                                document.getElementById("btn1").disabled=false;
+                                
+
+                            }
+                            function eval(){
+                                k=ip1.value;
+                                console.log(k);
+                                if(k!=null){
+                                    c++;
+                                  if(k.toLowerCase()==ans[qid]){
+                                    document.getElementById(qid+1).innerHTML="o";
+                                    corr++;
+                                  }
+                                else
+                                    document.getElementById(qid+1).innerHTML="x";
+                                    ip1.value='';
+                                    ip1.disabled=true;
+                                document.getElementById("btn1").disabled=true;
+
+                                    
+                                }
+                               check();
+                                if(c==9){
+                                    en=false;
+                                    }
+                                }
+function runScript(e) {
+    //See notes about 'which' and 'key'
+    if (e.keyCode == 13) {
+        var tb = document.getElementById("ip1");
+        eval(tb.value);
+        return false;
+    }
+}
+                            
+
+
+
+
+
+            </script>
+        </head>
+        <body>
+
+                <center>
+                    <p id="demo">29m 49s </p>
+                    <p id="result"></p>
+
+                <div id="score">
+                                <b><p>Correct Answer-:0</p>
+                                <p>Number of Lines Completed-:0</p></b>
+                              </div><div id="Rules">
+                                   <p id="q1"></p>
+                                   <p id="options"></p>
+                                   <form></form>
+                                   <input type="text" id="ip1"autocomplete="off" onkeypress="return runScript(event)"/>
+                                   
+                                   <button id="btn1" onclick="eval()" disabled="">submit</button>
+                                  </div><table id="mytablex" style="position:absolute">
+                        <tbody><tr>
+                          <th><button id="1" class="xno" onclick="toggle(this)">+</button></th>
+                          <th><button id="2" class="xno" onclick="toggle(this)">+</button></th>
+                          <th><button id="3" class="xno" onclick="toggle(this)">+</button></th>
+                        </tr>
+                        
+                              
+
+
+                        <tr>
+                          <td><button id="4" class="xno" onclick="toggle(this)">+</button></td>
+                          <td><button id="5" class="xno" onclick="toggle(this)">+</button></td>
+                          <td><button id="6" class="xno" onclick="toggle(this)">+</button></td>
+                        </tr>
+                        <tr>
+                          <td><button id="7" class="xno" onclick="toggle(this)">+</button></td>
+                          <td><button id="8" class="xno" onclick="toggle(this)">+</button></td>
+                          <td><button id="9" class="xno" onclick="toggle(this)">+</button></td>
+                        </tr>
+                </tbody></table>
+                    </center>
+
+
+
+        
+    
+</body></html>

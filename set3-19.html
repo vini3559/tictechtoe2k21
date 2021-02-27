@@ -1,0 +1,228 @@
+<html>
+        <head>
+            <style>
+                body {
+                background-image:    url("code.jpg");
+                background-size:     cover;                      /* <------ */
+                background-repeat:   no-repeat;
+                background-position: center center;              /* optional, center the image */
+            }
+                .xno{
+                    padding: 20px;
+                    border: 10px 0ch black;
+                    font-size: 60px;
+                    background-color: antiquewhite;
+                }
+                #demo,#result{
+                    font-size: 60px;
+                    font-family: cursive;
+					color:white;
+                }
+                #mytablex{
+                    border: 5px solid sienna;
+					margin-left:605px;
+
+                }
+                #rules{
+                  float: left;
+                  font-size: 20px;
+                  border:thick solid royalblue;
+
+                }
+                #score{
+                    float: right;
+                    font-size: 36px;
+					color:white;
+                }
+                </style>
+
+            <script>
+               qna=["<p style='color:white;'><b>1.ARITHMETIC REASONING</b><br/>A bird shooter was asked how<br/>many birds he had in the bag.<br/>He replied that there were<br/>all sparrows but six,<br/>all pigeons but six,<br/>and all docks but six.<br/>How many birds had he in all?<br/><br/>a)9<br/>b)18<br/>c)27<br/>d)36</p>",
+               "<p style='color:white;'><b>2.SEQUENCE</b><br/>Find the missing number<br/>in the sequence <br/>4 6 34 160 ? 1234 <br/>a)504 <br/>b)480 <br/>c)360<br/>d)562</p>",
+               "<p style='color:white;'><b>3.LOGICAL PUZZLES</b></br>There are 8 bags of rice<br/>looking alike,Seven of which<br/>have equal weight and one is<br/>slightly heavier.The weighing<br/>balance is of unlimited capacity.<br/>Using this balance, the<br/>minimum number of weighings <br/>required to identify the heavier <br/>bag?</br>a)4</br>b)3</br>c)2</br>d)8</p>",
+               "<p style='color:white;'><b>4.DIRECTIONS</b></br>A watch reads 4:30.<br/>If the minute hand points East,<br/>in what direction will the<br/>hour hand point?</br>a)South-West<br/>b)North-East</br>c)North</br>d)South</p>",
+               "<p style='color:white;'><b>5.QUANTITATIVE APTITUDE</b><br/>A three-digit number is selected such <br/>that it contains no zeroes. Now <br/>this three-digit number is <br/>written beside it self to form<br/>six-digit number. Its factor is<br/>a)5<br/>b)11<br/>c)4<br/>d)6</p>",
+               "<p style='color:white;'><b>6.ALPHABET SERIES</b><br/>Identify the missing term of the<br/>series given below.<br/>OLI, FCZ, ____, NKH<br/>a)WTQ<br/>b)BEG<br/>c)GDA<br/>d)None of These</p>",
+               "<p style='color:white;'><b>7.TECHNICAL</b></br>A computer executes program in sequence</br>a)Store,Fetch,Execute</br>b)Execute,Decode,Fetch</br>c)Fetch,Decode,Execute</br>d)Decode,Fetch,Execute</p>",
+               "<p style='color:white;'><b>8.PUZZLE</b><br/>In a family, there are<br/>3 sons, 3 fathers, 2 grandsons,<br/>2 grandfathers, 1 great grandson<br/>1 great grnadfather.How many males<br/>were there in the family<br/>a)8<br/>b)12<br/>c)4<br/>d)6</p>",
+			   "<p style='color:white;'><b>9.CODING-DECODING</b><br/>If GO = 32, SHE = 49,<br/>then SOME will be<br/>a)56<br/>b)58<br/>c)62<br/>d)64</p>"
+              
+               ];
+               ans=["a","a","c","b","b","a","d","c","a"];
+                var qid,ques,opt,ip1;
+                var boxi=document.getElementsByClassName("xno");
+                var corr=0;
+                //const prompt = require('electron-prompt');
+              //const smalltalk=require('smalltalk');
+
+
+                var countDownDate = new Date();
+                var t2=new Date(countDownDate);
+                t2.setMinutes(countDownDate.getMinutes()+20);
+                countDownDate=t2;
+                var en=true;
+                var x = setInterval(function() {
+                    // Get todays date and time
+                    var now = new Date().getTime();
+
+                    // Find the distance between now an the count down date
+                    var distance = countDownDate - now;
+
+                    // Time calculations for days, hours, minutes and seconds
+                    //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Display the result in the element with id="demo"
+                    document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+
+                    // If the count down is finished, write some text
+                    if (distance < 0) {
+                        clearInterval(x);
+                        document.getElementById("demo").innerHTML = "EXPIRED";
+                        en=false;
+
+                            }
+                            }, 1000);
+                var k=0,c=0;
+                function toggle(elem){
+                                if(en==true){
+                                    if(document.getElementById(elem.id).innerHTML=="+"){
+                                    setquestion(elem.id);
+
+                              
+                                }
+                                else{
+                                    ip1.disabled=true;
+                                document.getElementById("btn1").disabled=true;
+                                }
+                            }
+                        }
+                            function check(){
+                              let countcheck=0;
+                                    if(boxi[0].innerHTML=="o"&&boxi[1].innerHTML=="o"&&boxi[2].innerHTML=="o")
+                                        countcheck++;
+                                    if(boxi[3].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[5].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[6].innerHTML=="o"&&boxi[7].innerHTML=="o"&&boxi[8].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[0].innerHTML=="o"&&boxi[3].innerHTML=="o"&&boxi[6].innerHTML=="o")
+                                        countcheck++;
+                                    if(boxi[1].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[7].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[2].innerHTML=="o"&&boxi[5].innerHTML=="o"&&boxi[8].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[0].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[8].innerHTML=="o")
+                                            countcheck++;
+                                    if(boxi[2].innerHTML=="o"&&boxi[4].innerHTML=="o"&&boxi[6].innerHTML=="o")
+                                            countcheck++;
+                                    document.getElementById("score").innerHTML="<b><p style='color:white;'>Correct Answer-:"+corr+"</p><p>Number of Lines Completed-:" + countcheck+"</p></b>"
+                                    if(countcheck==2)
+                                        endgame();
+
+
+
+                            }
+                            function endgame(){
+                                en=false;
+                                document.getElementById("result").innerHTML="You won!! Time left"+document.getElementById("demo").innerHTML;
+                                document.getElementById("demo").style.visibility="hidden";
+
+                            }
+                            function setquestion(idk){
+                                ques=document.getElementById("q1");
+                                opt=document.getElementById("options");
+                                ip1=document.getElementById("ip1");
+               
+                                qid=idk-1;
+                                console.log(qna[qid]);
+                                ques.innerHTML=qna[qid];
+                                ip1.disabled=false;
+                                document.getElementById("btn1").disabled=false;
+                                
+
+                            }
+                            function eval(){
+                                k=ip1.value;
+                                console.log(k);
+                                if(k!=null){
+                                    c++;
+                                  if(k.toLowerCase()==ans[qid]){
+                                    document.getElementById(qid+1).innerHTML="o";
+                                    corr++;
+                                  }
+                                else
+                                    document.getElementById(qid+1).innerHTML="x";
+                                    ip1.value='';
+                                    ip1.disabled=true;
+                                document.getElementById("btn1").disabled=true;
+
+                                    
+                                }
+                               check();
+                                if(c==9){
+                                    en=false;
+                                    }
+                                }
+								function runScript(e) {
+    //See notes about 'which' and 'key'
+    if (e.keyCode == 13) {
+        var tb = document.getElementById("ip1");
+        eval(tb.value);
+        return false;
+    }
+}
+
+
+                            
+
+
+
+
+
+            </script>
+        </head>
+        <body>
+
+                <center>
+                    <p id="demo"></p>
+                    <p id="result"></p>
+
+                <table id="mytablex" style="position:absolute;">
+                        <tr>
+                          <th><button id="1" class="xno" onclick="toggle(this)" >+</button></th>
+                          <th><button id="2" class="xno" onclick="toggle(this)" >+</button></th>
+                          <th><button id="3" class="xno" onclick="toggle(this)" >+</button></th>
+                        </tr>
+                        <div id="score">
+                                <b><p>Correct Answer-:0</p>
+                                <p>Number of Lines Completed-:0</p></b>
+                              </div>
+                              <div id="Rules">
+                                   <p id="q1"></p>
+                                   <p id="options"></p>
+                                   <form>
+                                   <input type="text" id="ip1" autocomplete="off" onkeypress="return runScript(event)">
+                                   </form>
+                                   <button id="btn1" onclick="eval()" disabled>submit</button>
+                                  </div>
+
+
+                        <tr>
+                          <td><button id="4" class="xno" onclick="toggle(this)" >+</button></td>
+                          <td><button id="5" class="xno" onclick="toggle(this)">+</button></td>
+                          <td><button id="6" class="xno" onclick="toggle(this)">+</button></td>
+                        </tr>
+                        <tr>
+                          <td><button id="7" class="xno" onclick="toggle(this)">+</button></td>
+                          <td><button id="8" class="xno" onclick="toggle(this)">+</button></td>
+                          <td><button id="9" class="xno" onclick="toggle(this)">+</button></td>
+                        </tr>
+                </table>
+                    </center>
+
+
+
+        </body>
+    </html>
